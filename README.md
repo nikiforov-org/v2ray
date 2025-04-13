@@ -23,7 +23,7 @@ Below is a list of operating systems where this script can be used "as is." The 
 Run the script with root privileges:
 
 ```bash
-wget -qO- https://v2ray.pages.dev/v2ray.sh | bash
+wget -qO- https://v2ray-install.pages.dev/v2ray.sh | bash
 ```
 
 This setup works over WebSocket and uses port 443. For stable operation, it is recommended to use a clean VPS instance that is not used to host web apps.
