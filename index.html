@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Install V2Ray VPN Server on your VPS automatically with WebSocket support and full configuration management. Supports Ubuntu, Debian, Linux Mint, and other APT-based distributions."
+    />
+    <meta
+      name="keywords"
+      content="V2Ray, VPN, V2Ray VPN, VPS VPN, V2Ray auto installer, Ubuntu VPN server, Debian VPN, WebSocket VPN, V2Box"
+    />
+    <meta name="author" content="V2Ray Auto Installer" />
+    <title>Automatic V2Ray VPN Server Installation Script for VPS</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2 {
+        color: #222;
+      }
+
+      code {
+        background: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.95em;
+      }
+
+      pre {
+        background: #f4f4f4;
+        padding: 1em;
+        overflow-x: auto;
+        border-radius: 6px;
+      }
+
+      ul {
+        padding-left: 1.5rem;
+      }
+
+      footer {
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Automatic V2Ray VPN Server Installation on VPS</h1>
+
+    <p>
+      Set up your secure V2Ray VPN server in minutes with this fully automated
+      installation script. Works seamlessly with WebSocket over port 443 and
+      supports major Linux distributions that use APT and systemd.
+    </p>
+
+    <h2>Key Features</h2>
+    <ul>
+      <li>Create and manage multiple VPN profiles</li>
+      <li>Profiles saved in <code>v2ray-profiles</code> folder</li>
+      <li>Revoke profiles and remove their configurations</li>
+      <li>Completely uninstall V2Ray and clean up the system</li>
+    </ul>
+
+    <h2>Supported Operating Systems</h2>
+    <p>
+      The script is designed for Linux distributions using
+      <code>apt-get</code> and <code>systemctl</code>:
+    </p>
+    <ul>
+      <li>Ubuntu (16.04, 18.04, 20.04, 22.04)</li>
+      <li>Debian (9 "Stretch", 10 "Buster", 11 "Bullseye")</li>
+      <li>Linux Mint (Ubuntu-based)</li>
+      <li>Raspbian / Raspberry Pi OS (with systemd)</li>
+      <li>Elementary OS (Ubuntu-based)</li>
+      <li>Pop!_OS (Ubuntu-based)</li>
+      <li>Zorin OS (Ubuntu-based)</li>
+    </ul>
+
+    <h2>Recommended VPN Client</h2>
+    <p>
+      You can use <strong>V2Box</strong> as your VPN client for the best
+      compatibility and performance.
+    </p>
+
+    <h2>Installation Instructions</h2>
+    <p>Run the following command with root privileges on a clean VPS:</p>
+    <pre><code>wget -qO- https://v2ray.pages.dev/v2ray.sh | bash</code></pre>
+
+    <p>
+      The setup uses <strong>WebSocket</strong> on <strong>port 443</strong>.
+      For optimal performance, use a fresh VPS not running other web services.
+    </p>
+
+    <p>
+      <strong>Important:</strong> Ensure that <code>TCP port 443</code> is open
+      for incoming connections in your VPS firewall settings.
+    </p>
+
+    <footer>
+      &copy; 2025 V2Ray Auto Installer — Secure, Fast, and Simple VPN Deployment
+    </footer>
+  </body>
+</html>
