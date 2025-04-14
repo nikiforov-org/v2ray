@@ -115,19 +115,29 @@
         border-radius: 4px;
         cursor: pointer;
         background-color: #efefef;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
       }
 
       .copy-btn:hover {
         background: #e5e5e5;
       }
 
+      .copy-btn:focus {
+        outline: none;
+        box-shadow: none;
+      }
+
       .copied-message {
         position: absolute;
-        top: 18px;
+        top: 15px;
         right: 48px;
-        color: #555555;
+        color: #fff;
+        background-color: #333;
+        padding: 0 8px;
         font-size: 0.95em;
         font-weight: bold;
+        border-radius: 4px;
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: none;
