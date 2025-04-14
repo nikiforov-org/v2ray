@@ -1,22 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Basic Page Needs -->
     <meta charset="UTF-8" />
+    <title>Automatic V2Ray VPN Server Installation Script for VPS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Install V2Ray VPN Server on your VPS automatically with WebSocket support and full configuration management. Uses TLS (Transport Layer Security), secure and stealthy against deep packet inspection (DPI). Supports Ubuntu, Debian, Linux Mint, and other APT-based distributions."
+      content="Install V2Ray VPN Server on your VPS automatically with WebSocket support, TLS security, and full configuration management. Secure and stealthy against deep packet inspection (DPI). Compatible with Ubuntu, Debian, Linux Mint, and more."
     />
     <meta
       name="keywords"
-      content="V2Ray, VPN, V2Ray VPN, VPS VPN, V2Ray auto installer, Ubuntu VPN server, Debian VPN, WebSocket VPN, V2Box, TLS, DPI, Transport Layer Security, deep packet inspection"
+      content="V2Ray, VPN, V2Ray VPN, VPS VPN, V2Ray auto installer, Ubuntu VPN server, Debian VPN, WebSocket VPN, V2Box, TLS, DPI, secure VPN, automatic installation"
     />
     <meta name="author" content="V2Ray Auto Installer" />
+    <link rel="canonical" href="https://v2ray-install.pages.dev/" />
+
+    <!-- Open Graph / Facebook -->
     <meta
-      name="google-site-verification"
-      content="8S_hdlwpK3WCj_3218oPZEXhc_TC1z0jI9f1VTjoRAc"
+      property="og:title"
+      content="Automatic V2Ray VPN Server Installation Script for VPS"
     />
-    <title>Automatic V2Ray VPN Server Installation Script for VPS</title>
+    <meta
+      property="og:description"
+      content="Automatically install and manage a secure V2Ray VPN server on your VPS with WebSocket, TLS support, and full configuration management."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://v2ray-install.pages.dev/" />
+    <meta
+      property="og:image"
+      content="https://v2ray-install.pages.dev/logo.png"
+    />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Automatic V2Ray VPN Server Installation Script for VPS"
+    />
+    <meta
+      name="twitter:description"
+      content="Easily install and configure your secure V2Ray VPN Server with WebSocket support, TLS encryption, and manage multiple profiles effortlessly."
+    />
+    <meta
+      name="twitter:image"
+      content="https://v2ray-install.pages.dev/logo.png"
+    />
+
+    <!-- Robots -->
+    <meta name="robots" content="index, follow" />
+
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "V2Ray Auto Installer",
+        "url": "https://v2ray-install.pages.dev/",
+        "logo": "https://v2ray-install.pages.dev/logo.png"
+      }
+    </script>
+
     <style>
       body {
         font-family: system-ui, sans-serif;
@@ -45,6 +91,7 @@
         border-radius: 6px;
         position: relative;
         display: flex;
+        align-items: center;
       }
 
       ul {
@@ -62,12 +109,12 @@
         position: absolute;
         top: 8px;
         right: 8px;
-        color: #fff;
         border: none;
         padding: 5px 8px;
         font-size: 0.9em;
         border-radius: 4px;
         cursor: pointer;
+        background-color: #efefef;
       }
 
       .copy-btn:hover {
@@ -78,7 +125,7 @@
         position: absolute;
         top: 18px;
         right: 48px;
-        color: #555;
+        color: #555555;
         font-size: 0.95em;
         font-weight: bold;
         opacity: 0;
@@ -89,6 +136,12 @@
         opacity: 1;
       }
     </style>
+
+    <!-- Google Site Verification -->
+    <meta
+      name="google-site-verification"
+      content="8S_hdlwpK3WCj_3218oPZEXhc_TC1z0jI9f1VTjoRAc"
+    />
   </head>
   <body>
     <h1>Automatic V2Ray VPN Server Installation on VPS</h1>
@@ -96,22 +149,23 @@
     <p>
       Set up your secure V2Ray VPN server in minutes with this fully automated
       installation script. Works seamlessly with WebSocket over port 443 and
-      supports major Linux distributions that use APT and systemd.
+      supports major Linux distributions that use <code>apt-get</code> and
+      <code>systemctl</code>. Uses TLS (Transport Layer Security), secure and
+      stealthy against deep packet inspection (DPI). As a result, the VPN
+      connection becomes highly discreet and difficult to detect, even in
+      restricted networks.
     </p>
 
-    <h2>Key Features</h2>
+    <h2>✨&nbsp;&nbsp;Key Features</h2>
     <ul>
-      <li>
-        Uses TLS (Transport Layer Security), secure and stealthy against deep
-        packet inspection (DPI)
-      </li>
       <li>Create and manage multiple VPN profiles</li>
+      <li>Generates JSON, vmess-link and a QR-code</li>
       <li>Profiles saved in <code>v2ray-profiles</code> folder</li>
       <li>Revoke profiles and remove their configurations</li>
-      <li>Completely uninstall V2Ray and clean up the system</li>
+      <li>Completely uninstall V2Ray and clean up the system option</li>
     </ul>
 
-    <h2>Supported Operating Systems</h2>
+    <h2>🐧&nbsp;&nbsp;Supported Operating Systems</h2>
     <p>
       The script is designed for Linux distributions using
       <code>apt-get</code> and <code>systemctl</code>:
@@ -126,38 +180,53 @@
       <li>Zorin OS (Ubuntu-based)</li>
     </ul>
 
-    <h2>Recommended VPN Client</h2>
+    <h2>📱&nbsp;&nbsp;Recommended VPN Client</h2>
     <p>
       You can use <strong>V2Box</strong> as your VPN client for the best
       compatibility and performance.
     </p>
 
-    <h2>Installation Instructions</h2>
-    <p>Run the following command with root privileges on a clean VPS:</p>
-    <pre>
-      <code id="installCommand">wget https://v2ray-install.pages.dev/v2ray.sh -O v2ray.sh && bash v2ray.sh</code>
-      <span id="copiedMessage" class="copied-message">Copied</span>
-      <button class="copy-btn" onclick="copyCommand()">📋</button>
-    </pre>
+    <h2>⚙️&nbsp;&nbsp;Installation Instructions</h2>
 
     <p>
-      The setup uses <strong>WebSocket</strong> on <strong>port 443</strong>.
+      The setup uses <strong>WebSocket</strong> on port <strong>443</strong>.
       For optimal performance, use a fresh VPS not running other web services.
     </p>
 
+    <p>Run the following command on a clean VPS instance:</p>
+    <pre>
+      <code>wget https://v2ray-install.pages.dev/v2ray.sh -O v2ray.sh && sudo bash v2ray.sh</code>
+      <span class="copied-message">Copied</span>
+      <button class="copy-btn" onclick="copyCommand(this)">📋</button>
+    </pre>
+
     <p>
-      <strong>Important:</strong> Ensure that <code>TCP port 443</code> is open
-      for incoming connections in your VPS firewall settings.
+      📌&nbsp;&nbsp;<strong>Important:</strong> Ensure that
+      <code>TCP port 443</code> is open for incoming connections in your VPS
+      firewall settings.
     </p>
+
+    <h2>▶️&nbsp;&nbsp;Usage</h2>
+    <p>
+      Run the following command in the directory where the script is located:
+    </p>
+    <pre>
+      <code>sudo bash v2ray.sh</code>
+      <span class="copied-message">Copied</span>
+      <button class="copy-btn" onclick="copyCommand(this)">📋</button>
+    </pre>
 
     <footer>
       &copy; 2025 V2Ray Auto Installer — Secure, Fast, and Simple VPN Deployment
     </footer>
 
     <script>
-      function copyCommand() {
-        const commandText = document.getElementById("installCommand").innerText;
-        const copiedMessage = document.getElementById("copiedMessage");
+      function copyCommand(button) {
+        // Находим родительский <pre> блок, в котором находится и код, и кнопка копирования
+        const parentPre = button.parentElement;
+        const codeElement = parentPre.querySelector("code");
+        const commandText = codeElement.innerText;
+        const copiedMessage = parentPre.querySelector(".copied-message");
 
         navigator.clipboard
           .writeText(commandText)
