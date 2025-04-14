@@ -28,7 +28,7 @@ ensure_installed curl
 ensure_installed uuidgen
 ensure_installed jq
 ensure_installed iconv
-ensure_installed qrencode  # Для генерации QR-кода
+ensure_installed qrencode
 
 # Function to open port 443 (quiet output)
 function open_port443() {
@@ -124,7 +124,6 @@ function create_client() {
 
     echo -e "\n✅ Client '$PROFILE_NAME' created"
 
-    # Вывод информации о файлах и QR-код
     JSON_FULL_PATH=$(readlink -f "$JSON_PATH")
     URL_FULL_PATH=$(readlink -f "$URL_PATH")
     echo -e "\n📄 ${JSON_FULL_PATH}"
