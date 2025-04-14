@@ -72,7 +72,7 @@ function save_config() {
 # Function to create a new client
 function create_client() {
     while true; do
-        read -p "\n ✏️  Enter profile name: " PROFILE_NAME
+        read -p "✏️  Enter profile name: " PROFILE_NAME
         SLUG=$(to_latin_with_underscore "$PROFILE_NAME")
         if [ -z "$SLUG" ]; then
             echo -e "\n${YELLOW}⚠️  Profile name cannot be empty. Please try again.${NC}"
@@ -235,7 +235,7 @@ function full_removal() {
     echo -e "\n${RED}🚨 Attention!!! This action is irreversible!${NC}"
     echo -e "${GREEN}To cancel, press${NC} ⏎"
     echo -e "${RED}To delete, enter${NC} ${YELLOW}${WS_NAME}${NC}"
-    read -p "\n Enter the value to confirm deletion: " CONFIRM
+    read -p "Enter the value to confirm deletion: " CONFIRM
     if [ "$CONFIRM" = "$WS_NAME" ]; then
         systemctl stop v2ray
         systemctl disable v2ray
