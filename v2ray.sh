@@ -222,6 +222,7 @@ function full_removal() {
     if [ "$CONFIRM" = "$WS_NAME" ]; then
         systemctl stop v2ray
         systemctl disable v2ray
+        rm -rf /var/log/v2ray
         rm -rf "/usr/local/etc/v2ray"
         rm -rf "/usr/local/share/v2ray"
         rm -f "/usr/local/bin/v2ray"
