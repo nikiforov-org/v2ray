@@ -73,6 +73,21 @@
       .copy-btn:hover {
         background: #e5e5e5;
       }
+
+      .copied-message {
+        position: absolute;
+        top: 18px;
+        right: 48px;
+        color: #555;
+        font-size: 0.95em;
+        font-weight: bold;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+      .copied-message.show {
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -120,8 +135,9 @@
     <h2>Installation Instructions</h2>
     <p>Run the following command with root privileges on a clean VPS:</p>
     <pre>
-<code id="installCommand">wget -qO- https://v2ray-install.pages.dev/v2ray.sh | bash</code>
-<button class="copy-btn" onclick="copyCommand()">📋</button>
+      <code id="installCommand">wget https://v2ray-install.pages.dev/v2ray.sh -O v2ray.sh && bash v2ray.sh</code>
+      <span id="copiedMessage" class="copied-message">Copied</span>
+      <button class="copy-btn" onclick="copyCommand()">📋</button>
     </pre>
 
     <p>
@@ -140,12 +156,20 @@
 
     <script>
       function copyCommand() {
-        // Get the command text from the <code> element
         const commandText = document.getElementById("installCommand").innerText;
-        // Use the Clipboard API to write text to the clipboard
-        navigator.clipboard.writeText(commandText).catch((err) => {
-          console.error("Failed to copy text: ", err);
-        });
+        const copiedMessage = document.getElementById("copiedMessage");
+
+        navigator.clipboard
+          .writeText(commandText)
+          .then(() => {
+            copiedMessage.classList.add("show");
+            setTimeout(() => {
+              copiedMessage.classList.remove("show");
+            }, 1000);
+          })
+          .catch((err) => {
+            console.error("Failed to copy text: ", err);
+          });
       }
     </script>
   </body>
