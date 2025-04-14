@@ -49,7 +49,6 @@ open_port443
 # Step 1. Install V2Ray if it's not installed
 if ! systemctl is-active --quiet v2ray; then
     bash <(curl -Ls https://github.com/v2fly/fhs-install-v2ray/raw/master/install-release.sh)
-    apt purge -y unzip
     systemctl enable v2ray
     systemctl start v2ray
     if ! systemctl is-active --quiet v2ray; then
