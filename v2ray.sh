@@ -236,7 +236,7 @@ function full_removal() {
     echo -e "\n${RED}🚨 Attention!!! This action is irreversible!${NC}"
     echo -e "${GREEN}To cancel, press${NC} ⏎"
     echo -e "${RED}To delete, enter${NC} ${YELLOW}${WS_NAME}${NC}"
-    read -p "\nEnter the value to confirm deletion: " CONFIRM
+    read -p "\n Enter the value to confirm deletion: " CONFIRM
     if [ "$CONFIRM" = "$WS_NAME" ]; then
         systemctl stop v2ray
         systemctl disable v2ray
@@ -249,7 +249,7 @@ function full_removal() {
         rm -f "/etc/systemd/system/multi-user.target.wants/v2ray.service"
         rm -rf "$CLIENTS_DIR"
         systemctl daemon-reload
-        echo -e "${GREEN}💣 Deletion complete. Don't forget to remove ${YELLOW}v2ray.sh${NC}"
+        echo -e "\n${GREEN}💣 Deletion complete. Don't forget to remove ${YELLOW}v2ray.sh${NC}"
         exit 0
     else
         echo -e "\n${YELLOW}⚠️  Invalid input. Deletion canceled.${NC}"
