@@ -53,7 +53,7 @@ if ! systemctl is-active --quiet v2ray; then
     systemctl enable v2ray
     systemctl start v2ray
     if ! systemctl is-active --quiet v2ray; then
-        echo -e "${YELLOW}🚨 Error: V2Ray is not running after installation${NC}"
+        echo -e "\n${YELLOW}🚨 Error: V2Ray is not running after installation${NC}"
         exit 1
     fi
 fi
@@ -75,7 +75,7 @@ function create_client() {
         read -p "✏️  Enter profile name: " PROFILE_NAME
         SLUG=$(to_latin_with_underscore "$PROFILE_NAME")
         if [ -z "$SLUG" ]; then
-            echo -e "${YELLOW}⚠️  Profile name cannot be empty. Please try again.${NC}"
+            echo -e "\n${YELLOW}⚠️  Profile name cannot be empty. Please try again.${NC}"
         else
             break
         fi
@@ -122,7 +122,7 @@ function create_client() {
     VMESS_LINK="vmess://$(echo -n "$CLIENT_JSON" | base64 -w 0)"
     echo "$VMESS_LINK" > "$URL_PATH"
 
-    echo -e "✅ Client '$PROFILE_NAME' created"
+    echo -e "\n✅ Client '$PROFILE_NAME' created"
 
     # Вывод информации о файлах и QR-код
     JSON_FULL_PATH=$(readlink -f "$JSON_PATH")
@@ -188,11 +188,11 @@ function list_clients() {
 function revoke_client() {
     mapfile -t CLIENTS < <(list_clients)
     if [ ${#CLIENTS[@]} -eq 0 ]; then
-        echo -e "${YELLOW}⚠️  No clients to revoke.${NC}"
+        echo -e "\n${YELLOW}⚠️  No clients to revoke.${NC}"
         return
     fi
 
-    echo -e "${GREEN}⬅  [0] Back${NC}"
+    echo -e "\n${GREEN}⬅  [0] Back${NC}"
     for i in "${!CLIENTS[@]}"; do
         NAME=$(cut -d'|' -f1 <<< "${CLIENTS[$i]}")
         ID=$(cut -d'|' -f2 <<< "${CLIENTS[$i]}")
@@ -223,9 +223,9 @@ function revoke_client() {
                 fi
             fi
         done
-        echo -e "${GREEN}✅ Client revoked${NC}"
+        echo -e "\n${GREEN}✅ Client revoked${NC}"
     else
-        echo -e "${YELLOW}⚠️  Invalid choice.${NC}"
+        echo -e "\n${YELLOW}⚠️  Invalid choice.${NC}"
     fi
 }
 
@@ -233,7 +233,7 @@ function revoke_client() {
 function full_removal() {
     WS_PATH=$(jq -r '.inbounds[0].streamSettings.wsSettings.path' "$CONFIG_PATH")
     WS_NAME="${WS_PATH#/}"
-    echo -e "${RED}🚨 Attention!!! This action is irreversible!${NC}"
+    echo -e "\n${RED}🚨 Attention!!! This action is irreversible!${NC}"
     echo -e "${GREEN}To cancel, press${NC} ⏎"
     echo -e "${RED}To delete, enter${NC} ${YELLOW}${WS_NAME}${NC}"
     read -p "Enter the value to confirm deletion: " CONFIRM
@@ -252,13 +252,13 @@ function full_removal() {
         echo -e "${GREEN}💣 Deletion complete. Don't forget to remove ${YELLOW}v2ray.sh${NC}"
         exit 0
     else
-        echo -e "${YELLOW}⚠️  Invalid input. Deletion canceled.${NC}"
+        echo -e "\n${YELLOW}⚠️  Invalid input. Deletion canceled.${NC}"
     fi
 }
 
 # Main menu function
 function main_menu() {
-    echo -e "${GREEN}🚪 [0] Exit${NC}"
+    echo -e "\n${GREEN}🚪 [0] Exit${NC}"
     echo -e "${GREEN}👨‍ [1] Create Client${NC}"
     echo -e "${GREEN}☠️  [2] Revoke Client${NC}"
     echo -e "${RED}💣 [3] Full Removal${NC}"
@@ -278,7 +278,7 @@ function main_menu() {
             exit 0
             ;;
         *)
-            echo -e "${YELLOW}⚠️  Invalid choice. Try again.${NC}"
+            echo -e "\n${YELLOW}⚠️  Invalid choice. Try again.${NC}"
             ;;
     esac
 }
