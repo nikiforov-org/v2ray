@@ -12,6 +12,10 @@
       content="V2Ray, VPN, V2Ray VPN, VPS VPN, V2Ray auto installer, Ubuntu VPN server, Debian VPN, WebSocket VPN, V2Box"
     />
     <meta name="author" content="V2Ray Auto Installer" />
+    <meta
+      name="google-site-verification"
+      content="8S_hdlwpK3WCj_3218oPZEXhc_TC1z0jI9f1VTjoRAc"
+    />
     <title>Automatic V2Ray VPN Server Installation Script for VPS</title>
     <style>
       body {
@@ -39,6 +43,8 @@
         padding: 1em;
         overflow-x: auto;
         border-radius: 6px;
+        position: relative;
+        display: flex;
       }
 
       ul {
@@ -50,11 +56,24 @@
         font-size: 0.85rem;
         color: #888;
       }
+
+      /* Copy Button Style */
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: #fff;
+        border: none;
+        padding: 5px 8px;
+        font-size: 0.9em;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .copy-btn:hover {
+        background: #e5e5e5;
+      }
     </style>
-    <meta
-      name="google-site-verification"
-      content="8S_hdlwpK3WCj_3218oPZEXhc_TC1z0jI9f1VTjoRAc"
-    />
   </head>
   <body>
     <h1>Automatic V2Ray VPN Server Installation on VPS</h1>
@@ -79,8 +98,8 @@
       <code>apt-get</code> and <code>systemctl</code>:
     </p>
     <ul>
-      <li>Ubuntu (16.04, 18.04, 20.04, 22.04)</li>
-      <li>Debian (9 "Stretch", 10 "Buster", 11 "Bullseye")</li>
+      <li>Ubuntu (16.04, 18.04, 20.04, 22.04 and newer)</li>
+      <li>Debian (9 "Stretch", 10 "Buster", 11 "Bullseye" and newer)</li>
       <li>Linux Mint (Ubuntu-based)</li>
       <li>Raspbian / Raspberry Pi OS (with systemd)</li>
       <li>Elementary OS (Ubuntu-based)</li>
@@ -96,7 +115,10 @@
 
     <h2>Installation Instructions</h2>
     <p>Run the following command with root privileges on a clean VPS:</p>
-    <pre><code>wget -qO- https://v2ray-install.pages.dev/v2ray.sh | bash</code></pre>
+    <pre>
+<code id="installCommand">wget -qO- https://v2ray-install.pages.dev/v2ray.sh | bash</code>
+<button class="copy-btn" onclick="copyCommand()">📋</button>
+    </pre>
 
     <p>
       The setup uses <strong>WebSocket</strong> on <strong>port 443</strong>.
@@ -111,5 +133,16 @@
     <footer>
       &copy; 2025 V2Ray Auto Installer — Secure, Fast, and Simple VPN Deployment
     </footer>
+
+    <script>
+      function copyCommand() {
+        // Get the command text from the <code> element
+        const commandText = document.getElementById("installCommand").innerText;
+        // Use the Clipboard API to write text to the clipboard
+        navigator.clipboard.writeText(commandText).catch((err) => {
+          console.error("Failed to copy text: ", err);
+        });
+      }
+    </script>
   </body>
 </html>
