@@ -84,7 +84,7 @@ function create_client() {
     CLIENT_UUID=$(uuidgen)
     SERVER_IP=$(curl -s ifconfig.me || echo "YOUR_SERVER_IP")
     UPDATED_CONFIG=$(jq --arg id "$CLIENT_UUID" --arg profile "$SLUG" '
-      .inbounds[0].settings.clients += [{id: $id, alterId: 0, profile: $profile}]
+    .inbounds[0].settings.clients += [{id: $id, alterId: 0, profile: $profile}]
     ' "$CONFIG_PATH")
     echo "$UPDATED_CONFIG" > "$CONFIG_PATH"
     systemctl restart v2ray
