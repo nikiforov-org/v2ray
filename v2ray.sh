@@ -72,7 +72,7 @@ function save_config() {
 # Function to create a new client
 function create_client() {
     while true; do
-        read -p "\n✏️  Enter profile name: " PROFILE_NAME
+        read -p "\n ✏️  Enter profile name: " PROFILE_NAME
         SLUG=$(to_latin_with_underscore "$PROFILE_NAME")
         if [ -z "$SLUG" ]; then
             echo -e "\n${YELLOW}⚠️  Profile name cannot be empty. Please try again.${NC}"
