@@ -86,7 +86,7 @@
 
       pre {
         background: #f4f4f4;
-        padding: 1em;
+        padding: 8px;
         overflow-x: auto;
         border-radius: 6px;
         position: relative;
@@ -104,11 +104,15 @@
         color: #888;
       }
 
-      /* Copy Button Style */
+      .copy-wrapper {
+        position: sticky;
+        right: 0;
+        margin-left: auto;
+        display: flex;
+        z-index: 10;
+      }
+
       .copy-btn {
-        position: absolute;
-        top: 8px;
-        right: 8px;
         border: none;
         padding: 5px 8px;
         font-size: 0.9em;
@@ -130,8 +134,8 @@
 
       .copied-message {
         position: absolute;
-        top: 15px;
-        right: 48px;
+        right: 3.3em;
+        top: 0.5em;
         color: #fff;
         background-color: #333;
         padding: 0 8px;
@@ -166,7 +170,7 @@
       restricted networks.
     </p>
 
-    <h2>✨&nbsp;&nbsp;Key Features</h2>
+    <h2>✨  Key Features</h2>
     <ul>
       <li>Create and manage multiple VPN profiles</li>
       <li>Generates JSON, vmess-link and a QR-code</li>
@@ -175,7 +179,7 @@
       <li>Completely uninstall V2Ray and clean up the system option</li>
     </ul>
 
-    <h2>🐧&nbsp;&nbsp;Supported Operating Systems</h2>
+    <h2>🐧  Supported Operating Systems</h2>
     <p>
       The script is designed for Linux distributions using
       <code>apt-get</code> and <code>systemctl</code>:
@@ -190,13 +194,13 @@
       <li>Zorin OS (Ubuntu-based)</li>
     </ul>
 
-    <h2>📱&nbsp;&nbsp;Recommended VPN Client</h2>
+    <h2>📱  Recommended VPN Client</h2>
     <p>
       You can use <strong>V2Box</strong> as your VPN client for the best
       compatibility and performance.
     </p>
 
-    <h2>⚙️&nbsp;&nbsp;Installation Instructions</h2>
+    <h2>⚙️  Installation Instructions</h2>
 
     <p>
       The setup uses <strong>WebSocket</strong> on port <strong>443</strong>.
@@ -206,24 +210,27 @@
     <p>Run the following command on a clean VPS instance:</p>
     <pre>
       <code>wget https://v2ray-install.pages.dev/v2ray.sh -O v2ray.sh && sudo bash v2ray.sh</code>
-      <span class="copied-message">Copied</span>
-      <button class="copy-btn" onclick="copyCommand(this)">📋</button>
+      <div class="copy-wrapper">
+        <span class="copied-message">Copied</span>
+        <button class="copy-btn" onclick="copyCommand(this)">📋</button>
+      </div>
     </pre>
 
     <p>
-      📌&nbsp;&nbsp;<strong>Important:</strong> Ensure that
-      <code>TCP port 443</code> is open for incoming connections in your VPS
-      firewall settings.
+      📌  <strong>Important:</strong> Ensure that <code>TCP port 443</code> is
+      open for incoming connections in your VPS firewall settings.
     </p>
 
-    <h2>▶️&nbsp;&nbsp;Usage</h2>
+    <h2>▶️  Usage</h2>
     <p>
       Run the following command in the directory where the script is located:
     </p>
     <pre>
       <code>sudo bash v2ray.sh</code>
-      <span class="copied-message">Copied</span>
-      <button class="copy-btn" onclick="copyCommand(this)">📋</button>
+      <div class="copy-wrapper">
+        <span class="copied-message">Copied</span>
+        <button class="copy-btn" onclick="copyCommand(this)">📋</button>
+      </div>
     </pre>
 
     <footer>
@@ -232,8 +239,7 @@
 
     <script>
       function copyCommand(button) {
-        // Находим родительский <pre> блок, в котором находится и код, и кнопка копирования
-        const parentPre = button.parentElement;
+        const parentPre = button.closest("pre");
         const codeElement = parentPre.querySelector("code");
         const commandText = codeElement.innerText;
         const copiedMessage = parentPre.querySelector(".copied-message");
