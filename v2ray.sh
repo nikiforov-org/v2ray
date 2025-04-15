@@ -99,7 +99,7 @@ function create_client() {
         --arg type "none" \
         --arg host "" \
         --arg path "$WS_PATH" \
-        --arg tls "tls" \
+        --arg tls "none" \
         '{
             v: $v,
             ps: $ps,
@@ -155,10 +155,6 @@ if ! jq -e '.inbounds' "$CONFIG_PATH" >/dev/null 2>&1; then
         "network": "ws",
         "wsSettings": {
           "path": "$WS_PATH"
-        },
-        "security": "tls",
-        "tlsSettings": {
-          "alpn": ["http/1.1"]
         }
       }
     }
@@ -172,7 +168,6 @@ if ! jq -e '.inbounds' "$CONFIG_PATH" >/dev/null 2>&1; then
 }
 EOF
     systemctl restart v2ray
-    # Switch to main menu (do not call create_client automatically)
 else
     WS_PATH=$(jq -r '.inbounds[0].streamSettings.wsSettings.path' "$CONFIG_PATH")
 fi
